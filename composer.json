@@ -1,0 +1,26 @@
+{
+  "name" : "revelin/sample",
+  "version": "0.1.0",
+  "description" : "test",
+  "homepage" : "http://ec2-54-68-123-230.us-west-2.compute.amazonaws.com",
+  "repositories": [{
+    "type": "package",
+    "package": {
+        "name": "revelin/library",
+        "version": "0.1.0",
+        "source": {
+                "url": "https://github.com/milos92100/ReverseEngineeringBeta.git",
+            "type": "git",
+            "reference":"0.1.0"
+        }
+        }
+    }],
+
+"require": {
+        "phpunit/phpunit": "4.8.*",
+        "kherge/box": "^2.6"
+        
+        
+    }
+    
+ }
