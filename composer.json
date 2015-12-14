@@ -1,9 +1,17 @@
 {
-  "name" : "my-revelin-test-project",
-  "version": "1.0.0",
-  "description" : "test",
-  "homepage" : "http://ec2-54-68-123-230.us-west-2.compute.amazonaws.com",
   
+  "name" : "milos/my-vendor-name-for-revelin",
+  "type": "library",
+  "keywords": ["revelin","rev","milos"],
+  "homepage" : "http://ec2-54-68-123-230.us-west-2.compute.amazonaws.com",
+  "description" : "Ovo je moj prvi test",
+  "authors": [
+        {
+            "name": "Milos",
+            "email": "milos92100@gmail.com",
+            "role": "Developer"
+        }
+    ],
   "require": {
         "php": ">=5.4.0",
         "phpunit/phpunit": "4.8.*",
