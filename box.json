@@ -1,8 +1,0 @@
-{
-
-  "directories":["src"],
-  "main" : "main.php",
-  "output"  :"build/rebTest.phar",
-  "stub": true
-
-}

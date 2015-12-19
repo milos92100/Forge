@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * @author milos
  *
  */
@@ -16,7 +16,7 @@ class Collection
      * @param $item
      * @param string $key
      */
-    public function add ($item, $key = null)
+    public function add($item, $key = null)
     {
         if ($key == null) {
             $items[] = $item;
@@ -30,7 +30,7 @@ class Collection
      *
      * @param array $items
      */
-    public function addAll ($items)
+    public function addAll($items)
     {
         foreach ($items as $item) {
             $this->items[] = $item;
@@ -44,12 +44,12 @@ class Collection
      * @param $key
      * @return boolean
      */
-    public function remove ($key)
+    public function remove($key)
     {
         if (isset($this->items[$key])) {
             unset($this->items[$key]);
         }
-        
+
         return false;
     }
 
@@ -59,12 +59,12 @@ class Collection
      * @param $key
      * @return object | boolean
      */
-    public function get ($key)
+    public function get($key)
     {
         if (isset($this->items[$key])) {
             return $this->items[$key];
         }
-        
+
         return false;
     }
 
@@ -73,7 +73,7 @@ class Collection
      *
      * @return array
      */
-    public function keys ()
+    public function keys()
     {
         return array_keys($this->items);
     }
@@ -83,7 +83,7 @@ class Collection
      *
      * @return number
      */
-    public function length ()
+    public function length()
     {
         return count($this->items);
     }
@@ -94,7 +94,7 @@ class Collection
      * @param $key
      * @return boolean
      */
-    public function exists ($key)
+    public function exists($key)
     {
         return isset($this->items[$key]);
     }
