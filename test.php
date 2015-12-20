@@ -1,11 +1,22 @@
 <?php
 
-// include 'vendor/lichtner/fluentpdo/FluentPDO/FluentPDO.php';
+ini_set("display_errors", "1");
+require 'vendor/autoload.php';
 
-// use PDO;
-// use FluentPDO;
-// $pdo = new PDO("mysql:dbname=chatsky", "root", "milos");
-// $fpdo = new FluentPDO($pdo);
+use Revelin\MyTest;
+use Revelin\Common\Collection;
+
+
+$milos = new MyTest();
+$milos->milos();
+
+$coll = new Collection();
+
+
+
+
+exit();
+
 $link = mysql_connect("localhost", "root", "milos");
 mysql_select_db("chatsky", $link);
 
@@ -14,8 +25,12 @@ $res = mysql_query($query, $link);
 
 $tables = array();
 
+
+echo "dasdasd";
+
+
 while ($row = mysql_fetch_assoc($res)) {
-    
+
     $tables[] = array_values($row);
 }
 
@@ -24,14 +39,14 @@ while ($row = mysql_fetch_assoc($res)) {
 $data = array();
 
 foreach ($tables as $table => $val) {
-    
+
     foreach ($val as $a => $v) {
-        
+
         $query = "DESCRIBE " . $v;
         $res = mysql_query($query, $link);
-        
+
         while ($row = mysql_fetch_object($res)) {
-            
+
             // var_dump($row);
             $data[$v][] = $row;
         }

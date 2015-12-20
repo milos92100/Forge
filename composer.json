@@ -1,22 +1,26 @@
 {
-  
-  "name" : "milos/my-vendor-name-for-revelin",
-  "type": "library",
-  "keywords": ["revelin","rev","milos"],
-  "homepage" : "http://ec2-54-68-123-230.us-west-2.compute.amazonaws.com",
-  "description" : "Ovo je moj prvi test",
+  "name": "milos/revelin",
+  "keywords": [
+    "violin",
+    "rev"
+  ],
+  "homepage": "http://ec2-54-68-123-230.us-west-2.compute.amazonaws.com",
+  "description": "Ovo je moj prvi test",
   "authors": [
-        {
-            "name": "Milos",
-            "email": "milos92100@gmail.com",
-            "role": "Developer"
-        }
-    ],
-  "require": {
-        "php": ">=5.4.0",
-        "phpunit/phpunit": "4.8.*",
-        "kherge/box": "^2.6"
-       
+    {
+      "name": "Milos",
+      "email": "milos92100@gmail.com",
+      "role": "Developer"
     }
-    
- }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "phpunit/phpunit": "4.8.*",
+    "kherge/box": "^2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Revelin\\": "src/Revelin"
+    }
+  }
+}

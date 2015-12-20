@@ -1,5 +1,8 @@
 <?php
 
+
+namespace Revelin\Common;
+
 /**
  *
  * @author milos
@@ -9,6 +12,11 @@ class Collection
 {
 
     private $items = array();
+
+    public function __construct()
+    {
+        echo "Collection instacned";
+    }
 
     /**
      * Adds a new item to the collection
@@ -24,6 +32,7 @@ class Collection
             $items[$key] = $item;
         }
     }
+
 
     /**
      * Adds a array to the collection
