@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b4d5a4d5-bd23-4fcf-baac-4e2dda551ded" name="localhost" url="http://reverse-engineering-beta.localhost/">
+        <fileTransfer mountedRoot="C:\wamp\www\reverse-engineering-beta" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
