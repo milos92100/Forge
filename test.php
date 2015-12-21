@@ -1,40 +1,37 @@
 <?php
 
-ini_set("display_errors", "1");
-require 'vendor/autoload.php';
+//ini_set("display_errors", "1");
+require 'bootstrap.php';
 
 use Revelin\MyTest;
 use Revelin\Common\Collection;
 
 
 $milos = new MyTest();
-$milos->milos();
+//$milos->milos();
 
-$coll = new Collection();
-
-
+//$coll = new Collection();
 
 
-exit();
-
-$link = mysql_connect("localhost", "root", "milos");
-mysql_select_db("chatsky", $link);
+$link = mysqli_connect("localhost", "root", "milos");
+mysqli_select_db($link, "chatsky");
 
 $query = "SHOW TABLES";
-$res = mysql_query($query, $link);
+$res = mysqli_query($link, $query);
 
 $tables = array();
 
 
-echo "dasdasd";
-
-
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 
     $tables[] = array_values($row);
 }
 
-// var_dump($tables);
+
+//var_dump($tables);
+
+
+//exit();
 
 $data = array();
 
@@ -43,9 +40,11 @@ foreach ($tables as $table => $val) {
     foreach ($val as $a => $v) {
 
         $query = "DESCRIBE " . $v;
-        $res = mysql_query($query, $link);
 
-        while ($row = mysql_fetch_object($res)) {
+
+        $res = mysqli_query($link, $query);
+
+        while ($row = mysqli_fetch_object($res)) {
 
             // var_dump($row);
             $data[$v][] = $row;
