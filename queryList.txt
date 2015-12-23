@@ -68,3 +68,26 @@ WHERE
     AND col.table_name = 'TableName'
 
 #################### \MS SQL Server ##################
+
+#################### Oracle ##################
+
+# Retrieve Foreign keys for given table
+# NOTICE! Table name MUST be Uppercase
+
+SELECT
+    tab1.table_name AS TABLE_NAME,
+    col1.column_name AS COLUMN_NAME,
+    tab1.constraint_name AS CONSTRAINT_NAME,
+    tab2.table_name REFERENCED_TABLE_NAME,
+    col2.column_name REFERENCED_COLUMN_NAME
+
+FROM user_constraints tab1
+    LEFT JOIN user_cons_columns col1 ON col1.constraint_name = tab1.constraint_name
+    LEFT JOIN user_constraints tab2 ON tab2.constraint_name = tab1.r_constraint_name
+    LEFT JOIN user_cons_columns col2 ON col2.constraint_name = tab1.r_constraint_name
+
+-- returns only foreign key constraints
+WHERE tab1.constraint_type = 'R'
+AND tab1.table_name = 'TABLE NAME'
+
+#################### \Oracle ##################
