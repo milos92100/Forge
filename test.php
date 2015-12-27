@@ -3,8 +3,8 @@
 //ini_set("display_errors", "1");
 require 'bootstrap.php';
 
-use Revelin\MyTest;
-use Revelin\Common\Collection;
+use Forge\MyTest;
+use Forge\Common\Collection;
 
 
 $milos = new MyTest();

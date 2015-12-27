@@ -1,6 +1,6 @@
 <?php
 
-namespace Revelin;
+namespace Forge;
 
 /**
  * Created by PhpStorm.
@@ -8,7 +8,6 @@ namespace Revelin;
  * Date: 21.12.15.
  * Time: 00.57
  */
-
 interface iField
 {
     public function getName();

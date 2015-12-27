@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Revelin\Database;
+namespace Forge\Database;
 
-use Revelin\AbstractDatabase;
+use Forge\AbstractDatabase;
 
 /**
  * MySqlDatabase
@@ -13,7 +13,6 @@ use Revelin\AbstractDatabase;
  */
 class MySqlDatabase extends AbstractDatabase
 {
-
 
 
 }

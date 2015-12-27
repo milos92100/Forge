@@ -1,10 +1,10 @@
 <?php
 
-namespace Revelin\Factory;
+namespace Forge\Factory;
 
-use Revelin\Config;
-use Revelin\Exception\DatabaseNotSupported;
-use Revelin\iDatabase;
+use Forge\Config;
+use Forge\Exception\DatabaseNotSupported;
+use Forge\iDatabase;
 
 /**
  * Created by PhpStorm.

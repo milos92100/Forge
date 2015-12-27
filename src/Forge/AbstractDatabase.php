@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Revelin;
+namespace Forge;
 
-use Revelin\Common\Collection;
+use Forge\Common\Collection;
 
 
 /**
