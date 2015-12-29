@@ -1,6 +1,7 @@
 {
   "dbtype": "dbtype1",
   "dbhost": "dbhost1",
+  "port": "port1",
   "dbname": "dbname1",
   "user": "user1",
   "password": "pass1",
