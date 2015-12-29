@@ -7,6 +7,13 @@ use Forge\MyTest;
 use Forge\Common\Collection;
 
 
+$json_file = file_get_contents(__DIR__ . '/forge.json');
+$temp = json_decode($json_file);
+echo $json_file;
+
+
+exit;
+
 $milos = new MyTest();
 //$milos->milos();
 

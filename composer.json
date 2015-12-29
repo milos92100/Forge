@@ -1,15 +1,21 @@
 {
-  "name": "milos/revelin",
+  "name": "milos/forge",
   "keywords": [
-    "violin",
-    "rev"
+    "forge",
+    "generate",
+    "class",
+    "db"
   ],
   "homepage": "http://ec2-54-68-123-230.us-west-2.compute.amazonaws.com",
   "description": "Ovo je moj prvi test",
   "authors": [
     {
-      "name": "Milos",
+      "name": "Milos Stojanovic",
       "email": "milos92100@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Milos Danilov",
       "role": "Developer"
     }
   ],

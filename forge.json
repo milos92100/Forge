@@ -1,0 +1,12 @@
+{
+  "dbtype": "dbtype1",
+  "dbhost": "dbhost1",
+  "dbname": "dbname1",
+  "user": "user1",
+  "password": "pass1",
+  "destination_path": "dest1",
+  "exclude_tables": [
+    "table1",
+    "table2"
+  ]
+}
