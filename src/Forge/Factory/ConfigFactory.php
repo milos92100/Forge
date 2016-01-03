@@ -7,6 +7,8 @@ use Forge\Config;
 use Forge\Exception\ConfigFileEmptyException;
 use Forge\Exception\ConfigFileNotFoundException;
 use Forge\Exception\ConfigFileNotReadableException;
+use Exception;
+
 
 /**
  * Created by PhpStorm.
@@ -17,8 +19,6 @@ use Forge\Exception\ConfigFileNotReadableException;
 class ConfigFactory
 {
 
-    const ROOT_PATH = __DIR__ . "/";
-    const CONFIG_FILE = "forge.json";
 
     /**
      * @var Config
@@ -29,32 +29,40 @@ class ConfigFactory
     /**
      * Returns the Config object with the configuration data.
      *
+     * @param null $path
      * @return Config
      */
-    public static function getConfig()
+    public static function getConfig($path = null)
     {
         if (self::$config === null) {
 
-            self::$config = self::createConfig();
+            self::$config = self::createConfig($path);
         }
 
         return self::$config;
     }
 
 
+    public static function reset()
+    {
+        self::$config = null;
+    }
+
+
     /**
      *This method reads the conf file and creates a new Config object.
      *
-     * @throws ConfigFileEmptyException        This exception is thrown when the conf file has no content
-     * @throws ConfigFileNotFoundException     This exception is thrown when the conf file was not founds
-     * @throws ConfigFileNotReadableException  This exception is thrown when the conf file is not readable
-     *
-     * @return Config  The configuration file
+     * @param null $path
+     * @return Config This exception is thrown when the conf file has no content
+     * @throws ConfigFileEmptyException This exception is thrown when the conf file has no content
+     * @throws ConfigFileNotFoundException This exception is thrown when the conf file was not founds
+     * @throws ConfigFileNotReadableException This exception is thrown when the conf file is not readable
+     * @throws Exception
      */
-    private static function createConfig()
+    private static function createConfig($path = null)
     {
 
-        $file = self::readConfigFile();
+        $file = self::readConfigFile($path);
 
         $tempConfig = new Config();
         $tempConfig->setDbname($file->dbname);
@@ -62,6 +70,14 @@ class ConfigFactory
         $tempConfig->setHost($file->dbhost);
         $tempConfig->setUser($file->user);
         $tempConfig->setPassword($file->password);
+        $tempConfig->setPort($file->port);
+        $tempConfig->setDestinationPath($file->destination_path);
+
+        $exclude_tables = $file->exclude_tables;
+        if (isset($exclude_tables) and !is_array($exclude_tables)) {
+            throw new Exception("Invalid configuration file.The 'exclude_tables' parameter must be an array");
+        }
+        $tempConfig->setExcludeTables($exclude_tables);
 
         return $tempConfig;
 
@@ -74,25 +90,31 @@ class ConfigFactory
      * It also performs checks about the existence of the file,
      * its readability and its content.
      *
+     * @param null $path
      * @return Object
-     * @throws ConfigFileEmptyException       This exception is thrown when the conf file has no content
-     * @throws ConfigFileNotFoundException    This exception is thrown when the conf file was not founds
+     * @throws ConfigFileEmptyException This exception is thrown when the conf file has no content
+     * @throws ConfigFileNotFoundException This exception is thrown when the conf file was not founds
      * @throws ConfigFileNotReadableException This exception is thrown when the conf file is not readable
+     * @internal param $pa
      */
-    private static function readConfigFile()
+    private static function readConfigFile($path = null)
     {
 
 
-        if (!file_exists(ROOT_PATH . CONFIG_FILE)) {
+        if ($path === null) {
+            $path = CONFIG_FILE_FULL_PATH;
+        }
+
+
+        if (!file_exists($path)) {
             throw new ConfigFileNotFoundException("Configuration file not found");
         }
 
-        if (!is_readable()) {
+        if (!is_readable($path)) {
             throw new ConfigFileNotReadableException("Configuration file not readable");
         }
 
-        $content = file_get_contents(ROOT_PATH . CONFIG_FILE);
-
+        $content = file_get_contents($path);
 
         if (!$content or $content == "") {
             throw new ConfigFileEmptyException("Configuration file is empty");

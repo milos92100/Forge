@@ -3,6 +3,7 @@
 namespace Forge\Factory;
 
 use Forge\Config;
+use Forge\DatabaseType;
 use Forge\Exception\DatabaseNotSupported;
 use Forge\iDatabase;
 
@@ -23,27 +24,29 @@ class DatabaseFactory
      */
     public static function createDatabase(Config $config)
     {
+
+
         switch ($config->getDbType()) {
 
-            case Config::MYSQL:
+            case DatabaseType::MYSQL:
                 return self::createMySqlDatabase($config);
 
-            case Config::DB2:
+            case DatabaseType::DB2:
                 throw new DatabaseNotSupported("Database " . $config->getDbType() . " not supported.");
 
-            case Config::MONGODB:
+            case DatabaseType::MONGODB:
                 throw new DatabaseNotSupported("Database " . $config->getDbType() . " not supported.");
 
-            case Config::ORACLE:
+            case DatabaseType::ORACLE:
                 throw new DatabaseNotSupported("Database " . $config->getDbType() . " not supported.");
 
-            case Config::POSTGRESQL:
+            case DatabaseType::POSTGRESQL:
                 throw new DatabaseNotSupported("Database " . $config->getDbType() . " not supported.");
 
-            case Config::MSSQL:
+            case DatabaseType::MSSQL:
                 throw new DatabaseNotSupported("Database " . $config->getDbType() . " not supported.");
 
-            case Config::SQLITE:
+            case DatabaseType::SQLITE:
                 throw new DatabaseNotSupported("Database " . $config->getDbType() . " not supported.");
 
             default:
@@ -52,6 +55,24 @@ class DatabaseFactory
         }
 
 
+    }
+
+    /**
+     * Checks if the given db type is supported,
+     * if its supported it returns true,
+     * else it returns false.
+     *
+     * @param $type
+     * @return bool
+     */
+    public static function isSupported($type)
+    {
+        foreach (DatabaseType::$SUPPORTED_DATABASES as $db_type) {
+            if ($db_type === $type) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static function createMySqlDatabase(Config $config)

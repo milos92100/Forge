@@ -8,20 +8,16 @@ namespace Forge\Common;
  * @author milos
  *
  */
-class Collection
+class Collection extends \ArrayIterator
 {
 
     private $items = array();
 
-    public function __construct()
-    {
-        echo "Collection instacned";
-    }
 
     /**
      * Adds a new item to the collection
      *
-     * @param $item
+     * @param        $item
      * @param string $key
      */
     public function add($item, $key = null)

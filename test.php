@@ -1,16 +1,28 @@
 <?php
 
-//ini_set("display_errors", "1");
+ini_set("display_errors", "1");
 require 'bootstrap.php';
+
 
 use Forge\MyTest;
 use Forge\Common\Collection;
+use Forge\Factory\ConfigFactory;
 
 
-$json_file = file_get_contents(__DIR__ . '/forge.json');
-$temp = json_decode($json_file);
-echo $json_file;
+//$json_file = file_get_contents(__DIR__ . '/forge.json');
+//$temp = json_decode($json_file);
+//echo $json_file;
 
+
+$config = ConfigFactory::getConfig();
+echo $config->getDbname() . "<br>";
+echo $config->getDbType() . "<br>";
+echo $config->getHost() . "<br>";
+echo $config->getPassword() . "<br>";
+echo $config->getPort() . "<br>";
+echo $config->getUser() . "<br>";
+echo $config->getDestinationPath() . "<br>";
+var_dump($config->getExcludeTables());
 
 exit;
 
