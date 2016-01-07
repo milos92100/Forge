@@ -1,10 +1,10 @@
 {
-  "dbtype": "dbtype1",
-  "dbhost": "dbhost1",
-  "port": "port1",
-  "dbname": "dbname1",
-  "user": "user1",
-  "password": "pass1",
+  "dbtype": "mysql",
+  "dbhost": "localhost",
+  "port": "3306",
+  "dbname": "chatsky",
+  "user": "root",
+  "password": "milos",
   "destination_path": "dest1",
   "exclude_tables": [
     "table1",

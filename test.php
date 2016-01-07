@@ -3,54 +3,32 @@
 ini_set("display_errors", "1");
 require 'bootstrap.php';
 
-
-use Forge\MyTest;
-use Forge\Common\Collection;
-use Forge\Factory\ConfigFactory;
-
-
-//$json_file = file_get_contents(__DIR__ . '/forge.json');
-//$temp = json_decode($json_file);
-//echo $json_file;
-
+use \Forge\Data\Data;
+use \Forge\Factory\ConfigFactory;
+use \Forge\Factory\DSNFactory;
 
 $config = ConfigFactory::getConfig();
-echo $config->getDbname() . "<br>";
-echo $config->getDbType() . "<br>";
-echo $config->getHost() . "<br>";
-echo $config->getPassword() . "<br>";
-echo $config->getPort() . "<br>";
-echo $config->getUser() . "<br>";
-echo $config->getDestinationPath() . "<br>";
+echo "dbname = " . $config->getDbname() . "<br>";
+echo "dbtype = " . $config->getDbType() . "<br>";
+echo "host = " . $config->getHost() . "<br>";
+echo "passwrod = " . $config->getPassword() . "<br>";
+echo "port = " . $config->getPort() . "<br>";
+echo "user = " . $config->getUser() . "<br>";
+echo "dest = " . $config->getDestinationPath() . "<br>";
 var_dump($config->getExcludeTables());
 
-exit;
+echo DSNFactory::getDSN();
 
-$milos = new MyTest();
-//$milos->milos();
+$db = Data::getInstance();
 
-//$coll = new Collection();
-
-
-$link = mysqli_connect("localhost", "root", "milos");
-mysqli_select_db($link, "chatsky");
-
-$query = "SHOW TABLES";
-$res = mysqli_query($link, $query);
-
-$tables = array();
-
-
-while ($row = mysqli_fetch_assoc($res)) {
-
-    $tables[] = array_values($row);
+$stmt = $db->query("SHOW TABLES");
+if ($stmt) {
+    echo "Konekcija uspesna.";
 }
 
+$tables = array();
+$tables = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//var_dump($tables);
-
-
-//exit();
 
 $data = array();
 
@@ -60,19 +38,13 @@ foreach ($tables as $table => $val) {
 
         $query = "DESCRIBE " . $v;
 
+        $stmt = $db->query($query);
 
-        $res = mysqli_query($link, $query);
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-        while ($row = mysqli_fetch_object($res)) {
-
-            // var_dump($row);
             $data[$v][] = $row;
         }
     }
 }
 
 echo json_encode($data);
-
-
-
-
