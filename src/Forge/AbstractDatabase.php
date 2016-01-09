@@ -4,6 +4,7 @@
 namespace Forge;
 
 use Forge\Common\Collection;
+use Forge\Data\Data;
 
 
 /**
@@ -17,6 +18,23 @@ use Forge\Common\Collection;
  */
 abstract class AbstractDatabase implements iDatabase
 {
+
+    /**
+     * @var Data $data
+     */
+    protected $data = null;
+
+    /**
+     * @var Config $config
+     */
+    protected $config = null;
+
+
+    public function __construct(Config $config)
+    {
+        $this->data = Data::getInstance();
+        $this->config = $config;
+    }
 
 
     /**
@@ -55,6 +73,22 @@ abstract class AbstractDatabase implements iDatabase
     public function setTables($tables)
     {
         $this->tables = $tables;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
 

@@ -3,6 +3,7 @@
 namespace Forge\Factory;
 
 use Forge\Config;
+use Forge\Database\MySqlDatabase;
 use Forge\DatabaseType;
 use Forge\Exception\DatabaseNotSupported;
 use Forge\iDatabase;
@@ -77,9 +78,9 @@ class DatabaseFactory
 
     private static function createMySqlDatabase(Config $config)
     {
+        $db = new MySqlDatabase($config);
+        $db->setName($config->getDbname());
 
-
-        return 0;
 
     }
 

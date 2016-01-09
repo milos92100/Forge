@@ -17,34 +17,32 @@ echo "user = " . $config->getUser() . "<br>";
 echo "dest = " . $config->getDestinationPath() . "<br>";
 var_dump($config->getExcludeTables());
 
-echo DSNFactory::getDSN();
-
 $db = Data::getInstance();
 
 $stmt = $db->query("SHOW TABLES");
-if ($stmt) {
-    echo "Konekcija uspesna.";
-}
 
 $tables = array();
-$tables = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//$tables = $stmt->fetchAll(PDO::FETCH_ASSOC);
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $tables[] = $row["Tables_in_" . $config->getDbname()];
+}
 
 
 $data = array();
 
+
 foreach ($tables as $table => $val) {
 
-    foreach ($val as $a => $v) {
 
-        $query = "DESCRIBE " . $v;
+    $query = "DESCRIBE " . $val;
 
-        $stmt = $db->query($query);
+    $stmt = $db->query($query);
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-            $data[$v][] = $row;
-        }
+        $data[$val][] = $row;
     }
+
 }
 
 echo json_encode($data);
