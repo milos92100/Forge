@@ -1,10 +1,8 @@
 <?php
+namespace Forge\Reader;
 
-
-namespace Forge\Database;
-
-use Forge\AbstractDatabase;
 use Forge\Exception\DatabaseTablesException;
+use Forge\ForgeComponent;
 
 /**
  * MySqlDatabase
@@ -12,7 +10,7 @@ use Forge\Exception\DatabaseTablesException;
  * Date: 21.12.15 .
  * Time: 00.06
  */
-class MySqlDatabase extends AbstractDatabase
+class MySqlReader extends ForgeComponent
 {
 
     const GET_TABLES_QUERY = "SHOW TABLES";
@@ -22,7 +20,6 @@ class MySqlDatabase extends AbstractDatabase
     public function populateTables()
     {
         $tables = $this->getTableNames();
-
 
 
     }

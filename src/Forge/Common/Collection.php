@@ -8,7 +8,7 @@ namespace Forge\Common;
  * @author milos
  *
  */
-class Collection extends \ArrayIterator
+class Collection
 {
 
     private $items = array();
@@ -22,10 +22,15 @@ class Collection extends \ArrayIterator
      */
     public function add($item, $key = null)
     {
+
+        if ($item === null) {
+            throw new \InvalidArgumentException("The given item is null");
+        }
+
         if ($key == null) {
-            $items[] = $item;
+            $this->items[] = $item;
         } else {
-            $items[$key] = $item;
+            $this->items[$key] = $item;
         }
     }
 
@@ -34,11 +39,12 @@ class Collection extends \ArrayIterator
      * Adds a array to the collection
      *
      * @param array $items
+     * @throw
      */
     public function addAll($items)
     {
-        foreach ($items as $item) {
-            $this->items[] = $item;
+        foreach ($items as $key => $value) {
+            $this->add($value, $key);
         }
     }
 
@@ -102,5 +108,10 @@ class Collection extends \ArrayIterator
     public function exists($key)
     {
         return isset($this->items[$key]);
+    }
+
+    public function toArray()
+    {
+        return array_values($this->items);
     }
 }

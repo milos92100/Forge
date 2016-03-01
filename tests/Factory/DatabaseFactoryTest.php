@@ -1,6 +1,6 @@
 <?php
 
-use Forge\Factory\DatabaseFactory;
+use Forge\Factory\ForgeDatabaseFactory;
 
 /**
  * Created by PhpStorm.
@@ -10,9 +10,10 @@ use Forge\Factory\DatabaseFactory;
  */
 class DatabaseFactoryTest extends PHPUnit_Framework_TestCase
 {
+
     public function testIsNotSupported()
     {
-        $supported = DatabaseFactory::isSupported("foo");
+        $supported = ForgeDatabaseFactory::isSupported("foo");
         $this->assertEquals(false, $supported);
 
     }
