@@ -41,5 +41,4 @@ class Data extends PDO
         return self::$instance;
     }
 
-
 }

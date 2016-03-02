@@ -2,7 +2,7 @@
   "dbtype": "mysql",
   "dbhost": "localhost",
   "port": "3306",
-  "dbname": "chatsky",
+  "dbname": "sakila",
   "user": "root",
   "password": "milos",
   "destination_path": "dest1",

@@ -9,30 +9,35 @@
 namespace Forge;
 
 
-use Forge\Factory\DatabaseFactory;
+use Forge\Factory\ForgeDatabaseFactory;
 
 class Forge
 {
 
     private $config = null;
-    private $database = null;
 
     public function __construct(Config $config)
     {
         $this->config = $config;
     }
 
-
-    public function beginSmith()
+    public function smith()
     {
-
-        $this->database = DatabaseFactory::createDatabase($this->config);
-
+        $database = ForgeDatabaseFactory::getInstance()->create();
 
 
+        $forgeTables = $database->getTables();
+
+        echo " >> smith <br />";
+        foreach($forgeTables as $table) {
+
+            /* @var $table \Forge\Component\ForgeTable */
+            echo "FORGE TABLE: {$table->getName()}<br />";
+
+            foreach ($table->getFields() as $field) {
+                var_dump($field);
+            }
+        }
     }
-
-
-
 
 }

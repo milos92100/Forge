@@ -23,9 +23,9 @@ class Collection extends \ArrayIterator
     public function add($item, $key = null)
     {
         if ($key == null) {
-            $items[] = $item;
+            $this->items[] = $item;
         } else {
-            $items[$key] = $item;
+            $this->items[$key] = $item;
         }
     }
 
@@ -102,5 +102,10 @@ class Collection extends \ArrayIterator
     public function exists($key)
     {
         return isset($this->items[$key]);
+    }
+
+    public function getAllItems()
+    {
+        return $this->items;
     }
 }
