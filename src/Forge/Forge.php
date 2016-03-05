@@ -23,20 +23,27 @@ class Forge
 
     public function smith()
     {
-        $database = ForgeDatabaseFactory::getInstance()->create();
+        $database = ForgeDatabaseFactory::getInstance()->createDatabase($this->config);
 
 
-        $forgeTables = $database->getTables();
+        $forgeTablesCol = $database->getTables();
 
         echo " >> smith <br />";
-        foreach($forgeTables as $table) {
+
+        $iterator = $forgeTablesCol->getIterator();
+        while($iterator->valid()) {
+
+            $table = $iterator->current();
 
             /* @var $table \Forge\Component\ForgeTable */
             echo "FORGE TABLE: {$table->getName()}<br />";
 
-            foreach ($table->getFields() as $field) {
-                var_dump($field);
+            $fieldsCol = $table->getFields();
+            foreach ($fieldsCol->keys() as $field_key) {
+                var_dump($fieldsCol->get($field_key));
             }
+
+            $iterator->next();
         }
     }
 

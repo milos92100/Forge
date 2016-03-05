@@ -8,7 +8,7 @@ namespace Forge\Exception;
  * Date: 21.12.15.
  * Time: 00.42
  */
-class DatabaseNotSupported extends \Exception
+class DatabaseNotSupportedException extends \Exception
 {
 
 }

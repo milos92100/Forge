@@ -8,11 +8,10 @@ namespace Forge\Common;
  * @author milos
  *
  */
-class Collection extends \ArrayIterator
+class Collection implements \IteratorAggregate
 {
 
     private $items = array();
-
 
     /**
      * Adds a new item to the collection
@@ -104,8 +103,13 @@ class Collection extends \ArrayIterator
         return isset($this->items[$key]);
     }
 
-    public function getAllItems()
+    /**
+     * Returns the an ArrayIterator.
+     *
+     * @return \ArrayIterator
+     */
+    public function getIterator()
     {
-        return $this->items;
+        return new \ArrayIterator($this->items);
     }
 }

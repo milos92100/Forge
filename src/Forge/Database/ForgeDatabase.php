@@ -15,21 +15,26 @@ use Forge\Component\ForgeTable;
 class ForgeDatabase
 {
     /**
+     * Collection of ForgeTable objects.
      * @var ForgeTableCollection
      */
-    private $fTables = null;
+    private $tables = null;
 
+    /**
+     * Returns the collection of ForgeTable objects.
+     * @return ForgeTableCollection
+     */
     public function getTables()
     {
-        return $this->fTables->getAllItems();
+        return $this->tables;
     }
 
-    public function addTable(ForgeTable $fTable)
+    /**
+     * Sets the given ForgeTableCollection to Forge database.
+     * @param ForgeTableCollection $tables
+     */
+    public function setTables(ForgeTableCollection $tables)
     {
-        if (null === $this->fTables) {
-            $this->fTables = new ForgeTableCollection();
-        }
-
-        $this->fTables->add($fTable);
+        $this->tables = $tables;
     }
 }

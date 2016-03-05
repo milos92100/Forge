@@ -12,16 +12,34 @@ namespace Forge\Factory;
 use Forge\Config;
 use Forge\DatabaseType;
 use Forge\Exception\DatabaseNotSupported;
+use Forge\Exception\DatabaseNotSupportedException;
 use Forge\Exception\DatabaseReaderNotSupportedException;
+use Forge\Reader\AbstractDatabaseReader;
 use Forge\Reader\MySQLDatabaseReader;
 
+/**
+ * DatabaseReaderFactory.
+ *
+ * @package Forge\Factory
+ * @author Miloš Danilov <milosdanilov@gmail.com>
+ */
 class DatabaseReaderFactory
 {
 
+    /**
+     * Creates a database structure reader for supported database type.
+     * It will throw an DatabaseNotSupportedException
+     * if the unsupported database type is specified in Config.
+     *
+     * @param Config $config
+     * @return AbstractDatabaseReader
+     * @throws DatabaseNotSupportedException
+     * @throws DatabaseReaderNotSupportedException FIXME - remove this exception
+     */
     public static function getReader(Config $config)
     {
         if (!self::isSupported($config->getDbType())) {
-            throw new DatabaseNotSupported("Database type {$config->getDbType()} not supported!");
+            throw new DatabaseNotSupportedException("Database type {$config->getDbType()} not supported!");
         }
 
         switch ($config->getDbType()) {

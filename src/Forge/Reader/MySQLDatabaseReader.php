@@ -11,9 +11,18 @@ namespace Forge\Reader;
 
 use Forge\Factory\ConfigFactory;
 
+/**
+ * MySQLDatabaseReader.
+ *
+ * @package Forge\Reader
+ * @author Miloš Danilov <milosdanilov@gmail.com>
+ */
 class MySQLDatabaseReader extends AbstractDatabaseReader
 {
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTableList()
     {
         $query = "SHOW TABLES";
@@ -28,6 +37,9 @@ class MySQLDatabaseReader extends AbstractDatabaseReader
         return $table_list;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function describeTable($table)
     {
         $query = "DESCRIBE {$table}";

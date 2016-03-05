@@ -9,13 +9,33 @@
 namespace Forge\Component;
 
 
-
+/**
+ * ForgeField.
+ *
+ * @package Forge\Component
+ * @author Miloš Danilov <milosdanilov@gmail.com>
+ */
 class ForgeField
 {
+    /**
+     * ForgeField name.
+     * @var string
+     */
     private $name;
 
+    /**
+     * Data type.
+     * TODO - revise this
+     * @var string
+     */
     private $type;
 
+    /**
+     * Key type.
+     * Can be PRIMARY, FOREIGN..
+     * TODO - revise this
+     * @var string
+     */
     private $key;
 
     /**
@@ -65,6 +85,4 @@ class ForgeField
     {
         $this->key = $key;
     }
-
-
 }

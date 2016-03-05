@@ -10,12 +10,28 @@ namespace Forge\Reader;
 
 
 use Forge\Data\Data;
+use Forge\iDatabaseReader;
 
-abstract class AbstractDatabaseReader
+/**
+ * AbstractDatabaseReader.
+ *
+ * @package Forge\Reader
+ * @author Miloš Danilov <milosdanilov@gmail.com>
+ */
+abstract class AbstractDatabaseReader implements iDatabaseReader
 {
 
+    /**
+     * Database adapter.
+     * @var Data
+     */
     protected $dbAdapter = null;
 
+    /**
+     * Returns the database adapter.
+     *
+     * @return Data
+     */
     protected function getDbAdapter()
     {
         if (null === $this->dbAdapter) {
@@ -24,8 +40,4 @@ abstract class AbstractDatabaseReader
 
         return $this->dbAdapter;
     }
-
-    protected abstract function getTableList();
-
-    protected abstract function describeTable($table);
 }
