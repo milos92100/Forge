@@ -6,6 +6,7 @@ use Forge\Config;
 use Forge\Exception\ConfigFileNotValid;
 use Forge\DatabaseType;
 use Forge\Factory\ConfigFactory;
+use Forge\Exception\DatabaseNotSupported;
 
 
 /**
@@ -17,12 +18,16 @@ use Forge\Factory\ConfigFactory;
 class DSNFactory
 {
 
-
     public static function getDSN()
     {
         $config = ConfigFactory::getConfig();
 
+        return self::_getDSN($config);
+    }
 
+
+    public static function _getDSN(Config $config)
+    {
         if (!$config->getDbname()) {
             throw new ConfigFileNotValid("The db name is not set");
         }

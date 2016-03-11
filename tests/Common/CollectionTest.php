@@ -48,6 +48,16 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->item, $collection->get($this->key));
     }
 
+    /**
+     * Tests the add method with no key
+     */
+    public function testAddWithNoKey()
+    {
+        $collection = new \Forge\Common\Collection();
+        $collection->add("test", null);
+        $this->assertEquals("test", $collection->get(0));
+    }
+
 
     /**
      *Tests the addAll method
